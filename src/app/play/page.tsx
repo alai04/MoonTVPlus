@@ -2996,14 +2996,14 @@ function PlayPageClient() {
               {/* 第三方应用打开按钮 */}
               {videoUrl && (
                 <div className='mt-3 px-2 lg:flex-shrink-0 flex justify-end'>
-                  <div className='bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-lg p-2 border border-gray-200/50 dark:border-gray-700/50 w-auto'>
-                    <div className='flex flex-wrap gap-1.5 justify-end'>
+                  <div className='bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-lg p-2 border border-gray-200/50 dark:border-gray-700/50 w-full lg:w-auto overflow-x-auto'>
+                    <div className='flex gap-1.5 justify-end lg:flex-wrap'>
                       {/* 下载按钮 */}
                       <button
                         onClick={(e) => {
                           e.preventDefault();
                           const isM3u8 = videoUrl.toLowerCase().includes('.m3u8') || videoUrl.toLowerCase().includes('/m3u8/');
-                          
+
                           if (isM3u8) {
                             // M3U8格式 - 复制链接并提示
                             navigator.clipboard.writeText(videoUrl).then(() => {
@@ -3024,29 +3024,29 @@ function PlayPageClient() {
                             document.body.appendChild(a);
                             a.click();
                             document.body.removeChild(a);
-                            
+
                             if (artPlayerRef.current) {
                               artPlayerRef.current.notice.show = '开始下载...';
                             }
                           }
                         }}
-                        className='group relative flex items-center gap-1 px-2 py-1.5 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-xs font-medium rounded-md transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer overflow-hidden border border-green-400'
+                        className='group relative flex items-center justify-center gap-1 w-8 h-8 lg:w-auto lg:h-auto lg:px-2 lg:py-1.5 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-xs font-medium rounded-md transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer overflow-hidden border border-green-400 flex-shrink-0'
                         title='下载视频'
                       >
-                        <svg 
-                          className='w-4 h-4 flex-shrink-0 text-white' 
-                          fill='none' 
-                          stroke='currentColor' 
+                        <svg
+                          className='w-4 h-4 flex-shrink-0 text-white'
+                          fill='none'
+                          stroke='currentColor'
                           viewBox='0 0 24 24'
                         >
-                          <path 
-                            strokeLinecap='round' 
-                            strokeLinejoin='round' 
-                            strokeWidth='2' 
+                          <path
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
+                            strokeWidth='2'
                             d='M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4'
                           />
                         </svg>
-                        <span className='max-w-0 group-hover:max-w-[100px] overflow-hidden whitespace-nowrap transition-all duration-200 ease-in-out text-white'>
+                        <span className='hidden lg:inline max-w-0 group-hover:max-w-[100px] overflow-hidden whitespace-nowrap transition-all duration-200 ease-in-out text-white'>
                           下载
                         </span>
                       </button>
@@ -3057,7 +3057,7 @@ function PlayPageClient() {
                           e.preventDefault();
                           window.open(`potplayer://${videoUrl}`, '_blank');
                         }}
-                        className='group relative flex items-center gap-1 px-2 py-1.5 bg-white hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 text-xs font-medium rounded-md transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer overflow-hidden border border-gray-300 dark:border-gray-600'
+                        className='group relative flex items-center justify-center gap-1 w-8 h-8 lg:w-auto lg:h-auto lg:px-2 lg:py-1.5 bg-white hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 text-xs font-medium rounded-md transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer overflow-hidden border border-gray-300 dark:border-gray-600 flex-shrink-0'
                         title='PotPlayer'
                       >
                         <img
@@ -3065,7 +3065,7 @@ function PlayPageClient() {
                           alt='PotPlayer'
                           className='w-4 h-4 flex-shrink-0'
                         />
-                        <span className='max-w-0 group-hover:max-w-[100px] overflow-hidden whitespace-nowrap transition-all duration-200 ease-in-out text-gray-700 dark:text-gray-200'>
+                        <span className='hidden lg:inline max-w-0 group-hover:max-w-[100px] overflow-hidden whitespace-nowrap transition-all duration-200 ease-in-out text-gray-700 dark:text-gray-200'>
                           PotPlayer
                         </span>
                       </button>
@@ -3076,7 +3076,7 @@ function PlayPageClient() {
                           e.preventDefault();
                           window.open(`vlc://${videoUrl}`, '_blank');
                         }}
-                        className='group relative flex items-center gap-1 px-2 py-1.5 bg-white hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 text-xs font-medium rounded-md transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer overflow-hidden border border-gray-300 dark:border-gray-600'
+                        className='group relative flex items-center justify-center gap-1 w-8 h-8 lg:w-auto lg:h-auto lg:px-2 lg:py-1.5 bg-white hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 text-xs font-medium rounded-md transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer overflow-hidden border border-gray-300 dark:border-gray-600 flex-shrink-0'
                         title='VLC'
                       >
                         <img
@@ -3084,7 +3084,7 @@ function PlayPageClient() {
                           alt='VLC'
                           className='w-4 h-4 flex-shrink-0'
                         />
-                        <span className='max-w-0 group-hover:max-w-[100px] overflow-hidden whitespace-nowrap transition-all duration-200 ease-in-out text-gray-700 dark:text-gray-200'>
+                        <span className='hidden lg:inline max-w-0 group-hover:max-w-[100px] overflow-hidden whitespace-nowrap transition-all duration-200 ease-in-out text-gray-700 dark:text-gray-200'>
                           VLC
                         </span>
                       </button>
@@ -3095,7 +3095,7 @@ function PlayPageClient() {
                           e.preventDefault();
                           window.open(`mpv://${videoUrl}`, '_blank');
                         }}
-                        className='group relative flex items-center gap-1 px-2 py-1.5 bg-white hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 text-xs font-medium rounded-md transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer overflow-hidden border border-gray-300 dark:border-gray-600'
+                        className='group relative flex items-center justify-center gap-1 w-8 h-8 lg:w-auto lg:h-auto lg:px-2 lg:py-1.5 bg-white hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 text-xs font-medium rounded-md transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer overflow-hidden border border-gray-300 dark:border-gray-600 flex-shrink-0'
                         title='MPV'
                       >
                         <img
@@ -3103,7 +3103,7 @@ function PlayPageClient() {
                           alt='MPV'
                           className='w-4 h-4 flex-shrink-0'
                         />
-                        <span className='max-w-0 group-hover:max-w-[100px] overflow-hidden whitespace-nowrap transition-all duration-200 ease-in-out text-gray-700 dark:text-gray-200'>
+                        <span className='hidden lg:inline max-w-0 group-hover:max-w-[100px] overflow-hidden whitespace-nowrap transition-all duration-200 ease-in-out text-gray-700 dark:text-gray-200'>
                           MPV
                         </span>
                       </button>
@@ -3122,7 +3122,7 @@ function PlayPageClient() {
                             '_blank'
                           );
                         }}
-                        className='group relative flex items-center gap-1 px-2 py-1.5 bg-white hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 text-xs font-medium rounded-md transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer overflow-hidden border border-gray-300 dark:border-gray-600'
+                        className='group relative flex items-center justify-center gap-1 w-8 h-8 lg:w-auto lg:h-auto lg:px-2 lg:py-1.5 bg-white hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 text-xs font-medium rounded-md transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer overflow-hidden border border-gray-300 dark:border-gray-600 flex-shrink-0'
                         title='MX Player'
                       >
                         <img
@@ -3130,7 +3130,7 @@ function PlayPageClient() {
                           alt='MX Player'
                           className='w-4 h-4 flex-shrink-0'
                         />
-                        <span className='max-w-0 group-hover:max-w-[100px] overflow-hidden whitespace-nowrap transition-all duration-200 ease-in-out text-gray-700 dark:text-gray-200'>
+                        <span className='hidden lg:inline max-w-0 group-hover:max-w-[100px] overflow-hidden whitespace-nowrap transition-all duration-200 ease-in-out text-gray-700 dark:text-gray-200'>
                           MX Player
                         </span>
                       </button>
@@ -3141,7 +3141,7 @@ function PlayPageClient() {
                           e.preventDefault();
                           window.open(`nplayer-${videoUrl}`, '_blank');
                         }}
-                        className='group relative flex items-center gap-1 px-2 py-1.5 bg-white hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 text-xs font-medium rounded-md transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer overflow-hidden border border-gray-300 dark:border-gray-600'
+                        className='group relative flex items-center justify-center gap-1 w-8 h-8 lg:w-auto lg:h-auto lg:px-2 lg:py-1.5 bg-white hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 text-xs font-medium rounded-md transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer overflow-hidden border border-gray-300 dark:border-gray-600 flex-shrink-0'
                         title='nPlayer'
                       >
                         <img
@@ -3149,7 +3149,7 @@ function PlayPageClient() {
                           alt='nPlayer'
                           className='w-4 h-4 flex-shrink-0'
                         />
-                        <span className='max-w-0 group-hover:max-w-[100px] overflow-hidden whitespace-nowrap transition-all duration-200 ease-in-out text-gray-700 dark:text-gray-200'>
+                        <span className='hidden lg:inline max-w-0 group-hover:max-w-[100px] overflow-hidden whitespace-nowrap transition-all duration-200 ease-in-out text-gray-700 dark:text-gray-200'>
                           nPlayer
                         </span>
                       </button>
@@ -3165,7 +3165,7 @@ function PlayPageClient() {
                             '_blank'
                           );
                         }}
-                        className='group relative flex items-center gap-1 px-2 py-1.5 bg-white hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 text-xs font-medium rounded-md transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer overflow-hidden border border-gray-300 dark:border-gray-600'
+                        className='group relative flex items-center justify-center gap-1 w-8 h-8 lg:w-auto lg:h-auto lg:px-2 lg:py-1.5 bg-white hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 text-xs font-medium rounded-md transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer overflow-hidden border border-gray-300 dark:border-gray-600 flex-shrink-0'
                         title='IINA'
                       >
                         <img
@@ -3173,7 +3173,7 @@ function PlayPageClient() {
                           alt='IINA'
                           className='w-4 h-4 flex-shrink-0'
                         />
-                        <span className='max-w-0 group-hover:max-w-[100px] overflow-hidden whitespace-nowrap transition-all duration-200 ease-in-out text-gray-700 dark:text-gray-200'>
+                        <span className='hidden lg:inline max-w-0 group-hover:max-w-[100px] overflow-hidden whitespace-nowrap transition-all duration-200 ease-in-out text-gray-700 dark:text-gray-200'>
                           IINA
                         </span>
                       </button>
