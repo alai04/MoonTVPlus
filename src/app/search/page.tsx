@@ -291,7 +291,22 @@ function SearchPageClient() {
     const sourceOptions: { label: string; value: string }[] = [
       { label: '全部来源', value: 'all' },
       ...Array.from(sourcesSet.entries())
-        .sort((a, b) => a[1].localeCompare(b[1]))
+        .sort((a, b) => {
+          // 优先排序：emby 和 openlist 置于最前
+          const prioritySources = ['emby', 'openlist'];
+          const aIsPriority = prioritySources.includes(a[0]);
+          const bIsPriority = prioritySources.includes(b[0]);
+
+          if (aIsPriority && !bIsPriority) return -1;
+          if (!aIsPriority && bIsPriority) return 1;
+          if (aIsPriority && bIsPriority) {
+            // 两者都是优先源，按照 prioritySources 数组顺序排列
+            return prioritySources.indexOf(a[0]) - prioritySources.indexOf(b[0]);
+          }
+
+          // 其他来源按字母顺序排列
+          return a[1].localeCompare(b[1]);
+        })
         .map(([value, label]) => ({ label, value })),
     ];
 
