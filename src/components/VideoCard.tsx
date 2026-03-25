@@ -611,20 +611,22 @@ const VideoCard = forwardRef<VideoCardHandle, VideoCardProps>(function VideoCard
       });
     }
 
-    // 详情页面按钮
-    actions.push({
-      id: 'detail',
-      label: '详情',
-      icon: <Info size={20} />,
-      onClick: () => {
-        setShowMobileActions(false);
-        // 延迟打开 DetailPanel，确保 MobileActionSheet 完全清理完成
-        setTimeout(() => {
-          setShowDetailPanel(true);
-        }, 250);
-      },
-      color: 'default' as const,
-    });
+    // 详情页面按钮（直播源不显示详情）
+    if (origin !== 'live') {
+      actions.push({
+        id: 'detail',
+        label: '详情',
+        icon: <Info size={20} />,
+        onClick: () => {
+          setShowMobileActions(false);
+          // 延迟打开 DetailPanel，确保 MobileActionSheet 完全清理完成
+          setTimeout(() => {
+            setShowDetailPanel(true);
+          }, 250);
+        },
+        color: 'default' as const,
+      });
+    }
 
     // AI问片功能
     if (aiEnabled && actualTitle) {
@@ -1075,7 +1077,9 @@ const VideoCard = forwardRef<VideoCardHandle, VideoCardProps>(function VideoCard
 
             return (
               <div
-                className='absolute bottom-2 right-2 opacity-0 transition-all duration-300 ease-in-out delay-75 sm:group-hover:opacity-100'
+                className={`absolute bottom-1 right-1 sm:bottom-2 sm:right-2 transition-all duration-300 ease-in-out delay-75 ${
+                  from === 'search' ? 'opacity-100' : 'opacity-0 sm:group-hover:opacity-100'
+                }`}
                 style={{
                   WebkitUserSelect: 'none',
                   userSelect: 'none',
@@ -1522,6 +1526,7 @@ const VideoCard = forwardRef<VideoCardHandle, VideoCardProps>(function VideoCard
           tmdbId={tmdb_id}
           type={actualSearchType as 'movie' | 'tv'}
           seasonNumber={seasonNumber}
+          currentEpisode={currentEpisode}
           cmsData={cmsData}
           sourceId={id}
           source={source}
